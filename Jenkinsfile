@@ -13,7 +13,7 @@ node{
         def mvnCMD = "${mvnHome}/bin/mvn"
         sh "${mvnCMD} clean package"
    }
-        stage('Dangling image') {
+        stage('Dangling docker image') {
         script {
             def cmd = "docker ps -aqf ancestor=$image"
             def container = sh (returnStdout: true, script: cmd)
@@ -27,17 +27,17 @@ node{
             sh 'docker images -q -f dangling=true | xargs --no-run-if-empty docker rmi'
         }
     }
-   stage('Build Docker image') {
+   stage('Build docker image') {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
         app = docker.build(image)
     }
-    stage('Test Docker image') {
+    stage('Test docker image') {
         app.inside {
             sh 'echo "Tests passed"'
         }
     }
-    stage('Run Docker Image') {
+    stage('Run docker Image') {
         app.run("-p $hostport:$containerport")
     }
     stage("Trigger Silk Central Executions") {
