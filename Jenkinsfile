@@ -52,5 +52,6 @@ node{
         } else {
             bat "${path}/bin/gradle.bat :silkCentralLaunch -b ${scFile} " + scTriggerInfo
         }
-    junit 'sc_results/junit*.xml' 
+        junit 'sc_results/junit*.xml' 
+    }
 }
