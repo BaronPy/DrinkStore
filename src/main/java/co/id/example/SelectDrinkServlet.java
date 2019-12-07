@@ -23,7 +23,7 @@ public class SelectDrinkServlet extends HttpServlet {
 
         String drinkType = req.getParameter("Type");
 
-        LiquorService liquorService = new LiquorService();
+        DrinkService liquorService = new DrinkService();
         DrinkType l = DrinkType.valueOf(drinkType);
 
         List drinkBrands = liquorService.getAvailableBrands(l);
