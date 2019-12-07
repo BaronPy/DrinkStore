@@ -1,2 +1,2 @@
-## Liquor Store 
-~Simple java web application 
+## Simple Java App 
+~CI/CD with jenkins and docker
