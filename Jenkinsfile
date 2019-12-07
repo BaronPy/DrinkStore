@@ -7,12 +7,43 @@ node{
         def mvnCMD = "${mvnHome}/bin/mvn"
         sh "${mvnCMD} clean package"
    }
-   stage('Deploy to tomcat'){
+
+   
+   /*
+    stage('Deploy to tomcat'){
         deploy adapters: [tomcat8(credentialsId: 'tomcat-account', path: '', 
         url: 'http://172.16.0.2:8181')], 
         contextPath: '/LiquorStore', 
         war: '**/*.war'
    }
+     stage('Dangling image') {
+        script {
+            def cmd = "docker ps -aqf ancestor=$image"
+            def container = sh (returnStdout: true, script: cmd)
+            
+            if (container) {
+                echo 'Existing container found!! Deleting...'
+                sh "docker stop \$($cmd)"
+                sh "docker rm \$($cmd)"
+                echo 'Done.'
+            } 
+            sh 'docker images -q -f dangling=true | xargs --no-run-if-empty docker rmi'
+        }
+    }
+   stage('Build image') {
+        /* This builds the actual image; synonymous to
+         * docker build on the command line */
+        app = docker.build(image)
+    }
+    stage('Test image') {
+        app.inside {
+            sh 'echo "Tests passed"'
+        }
+    }
+    stage('Run image') {
+        app.run("-p $hostport:$containerport")
+    }
+   
     stage("Trigger Silk Central Executions") {
         def path = tool name: 'gradle5.6.4', type: 'gradle'
         def scFile = new File(pwd(), "silkcentral.gradle")
@@ -27,4 +58,5 @@ node{
         }
     junit 'sc_results/junit*.xml' 
   }
+  */
 }
