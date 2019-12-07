@@ -8,8 +8,6 @@ node{
         sh "${mvnCMD} clean package"
    }
 
-   
-   /*
     stage('Deploy to tomcat'){
         deploy adapters: [tomcat8(credentialsId: 'tomcat-account', path: '', 
         url: 'http://172.16.0.2:8181')], 
@@ -58,5 +56,4 @@ node{
         }
     junit 'sc_results/junit*.xml' 
   }
-  */
 }
