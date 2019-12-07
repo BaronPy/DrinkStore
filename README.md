@@ -1,2 +1,2 @@
 ## Simple Java App 
-~CI/CD with jenkins and docker
+CI/CD with jenkins and docker
