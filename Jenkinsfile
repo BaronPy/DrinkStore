@@ -1,7 +1,7 @@
 node{
     def app
     def image = 'baronpy/liquorstore'
-    def hostport = '8000'
+    def hostport = '8888'
     def containerport = '8080'
     
 
