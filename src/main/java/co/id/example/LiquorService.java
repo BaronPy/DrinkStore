@@ -1,36 +1,26 @@
 package co.id.example;
 
-import co.id.example.model.LiquorType;
+import co.id.example.model.DrinkType;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LiquorService {
+public class DrinkService {
 
-    public List getAvailableBrands(LiquorType type){
+    public List getAvailableBrands(DrinkType type){
 
         List brands = new ArrayList();
 
-        if(type.equals(LiquorType.WINE)){
-            brands.add("Adrianna Vineyard");
-            brands.add(("J. P. Chenet"));
-            brands.add(("Bogle Old Vine California Zinfandel"));
-            brands.add(("Pine Ridge Chenin Blanc"));
-            brands.add(("Ravenswood Old Vine Lodi Zinfandel"));
+        if(type.equals(DrinkType.JUICE)){
+            brands.add("Orange Juice");
+            brands.add(("Blueberry Juice"));
+            brands.add(("Grapefruit Juice"));
+            brands.add((" Cranberry Juice"));
 
-
-        }else if(type.equals(LiquorType.WHISKY)){
-            brands.add("Glenfiddich");
-            brands.add("Johnnie Walker");
-            brands.add("Jack Daniel's Tennessee");
-            brands.add("Crown Royal Canadian");
-            brands.add("Fireball Cinnamon");
-            brands.add("Jim Beam Bourbon");
-
-         }else if(type.equals(LiquorType.BEER)){
-            brands.add("Corona");
-            brands.add("Skol");
-            brands.add("Heineken");
-            brands.add("Harbin");
+        }else if(type.equals(DrinkType.SOFTDRINK)){
+            brands.add("Cocola");
+            brands.add("Fanta");
+            brands.add("Sprite");
+            brands.add("7up");
 
         }else {
             brands.add("No Brand Available");
