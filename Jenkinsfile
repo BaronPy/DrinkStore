@@ -40,4 +40,17 @@ node{
     stage('Run image') {
         app.run("-p $hostport:$containerport")
     }
+    stage("Trigger Silk Central Executions") {
+        def path = tool name: 'gradle5.6.4', type: 'gradle'
+        def scFile = new File(pwd(), "silkcentral.gradle")
+        scFile.delete()
+        scFile.getParentFile().mkdirs()
+        writeFile([file: scFile.getAbsolutePath(), text: new URL ("http://172.16.0.1:19120/silkroot/tools/silkcentral.gradle").getText()])
+        def scTriggerInfo = '-Psc_executionNodeIds=45 -Psc_host=http://172.16.0.1:19120 -Psc_token=0f58a614-edcd-403c-8953-fdeb37a572ca'
+        if (isUnix()) { 
+            sh "${path}/bin/gradle :silkCentralLaunch -b ${scFile} " + scTriggerInfo
+        } else {
+            bat "${path}/bin/gradle.bat :silkCentralLaunch -b ${scFile} " + scTriggerInfo
+        }
+    junit 'sc_results/junit*.xml' 
 }
