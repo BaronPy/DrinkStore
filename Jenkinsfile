@@ -27,17 +27,17 @@ node{
             sh 'docker images -q -f dangling=true | xargs --no-run-if-empty docker rmi'
         }
     }
-   stage('Build image') {
+   stage('Build Docker image') {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
         app = docker.build(image)
     }
-    stage('Test image') {
+    stage('Test Docker image') {
         app.inside {
             sh 'echo "Tests passed"'
         }
     }
-    stage('Run image') {
+    stage('Run Docker Image') {
         app.run("-p $hostport:$containerport")
     }
     stage("Trigger Silk Central Executions") {
